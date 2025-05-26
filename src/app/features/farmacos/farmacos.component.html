@@ -1,0 +1,12 @@
+<h2>Listado de Fármacos</h2>
+
+<ul *ngIf="farmacos.length > 0; else cargando">
+  <li *ngFor="let f of farmacos">
+    {{ f.nombre_comercial }} -
+    <a [href]="f.url_ficha_tecnica" target="_blank">Ficha técnica</a>
+  </li>
+</ul>
+
+<ng-template #cargando>
+  <p>Cargando fármacos...</p>
+</ng-template>
