@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FarmacosComponent } from './farmacos.component';
+import { FarmacosRoutingModule } from './farmacos-routing.module';
 
 
 
@@ -9,7 +10,8 @@ import { FarmacosComponent } from './farmacos.component';
     FarmacosComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FarmacosRoutingModule
   ]
 })
 export class FarmacosModule { }

@@ -1,0 +1,24 @@
+<mat-toolbar class="toolbar">
+  <img
+    src="assets/img/vadeclick-icono.png"
+    alt="Logo"
+    class="navbar-logo"
+    routerLink="/"
+  />
+  <span class="app-title" routerLink="/">VadeClick</span>
+
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="isAuthenticated$ | async; else publicLinks">
+    <a mat-button routerLink="/dashboard/farmacos">Fármacos</a>
+    <a mat-button routerLink="/dashboard/favoritos">Favoritos</a>
+    <a mat-button routerLink="/dashboard/formulas">Fórmulas</a>
+    <button mat-button (click)="logout()"><a>Cerrar sesión</a></button>
+  </ng-container>
+
+  <ng-template #publicLinks>
+    <a mat-button routerLink="/login">Iniciar sesión</a>
+    <a mat-button routerLink="/register">Registro</a>
+    <a mat-button routerLink="/info">Info</a>
+  </ng-template>
+</mat-toolbar>

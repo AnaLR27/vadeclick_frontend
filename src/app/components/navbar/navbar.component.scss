@@ -1,0 +1,25 @@
+@use "variables" as *;
+
+.toolbar {
+  background-color: $navbar;
+  color: $p-white;
+  a {
+    color: $p-white;
+  }
+}
+
+.app-title {
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.navbar-logo {
+  height: 32px;
+  margin-right: 12px;
+  cursor: pointer;
+}

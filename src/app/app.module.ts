@@ -6,10 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AuthModule } from './features/auth/auth.module';
-import { FarmacosModule } from './features/farmacos/farmacos.module';
-import { FavoritosModule } from './features/favoritos/favoritos.module';
-import { FormulasModule } from './features/formulas/formulas.module';
+
+import { NavbarModule } from './components/navbar/navbar.module';
+import { FooterModule } from './components/footer/footer.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,12 +18,11 @@ import { FormulasModule } from './features/formulas/formulas.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NavbarModule,
+    FooterModule,
+    MatSnackBarModule,
     AppRoutingModule,
-    AuthModule,
-    FarmacosModule,
-    FavoritosModule,
-    FormulasModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

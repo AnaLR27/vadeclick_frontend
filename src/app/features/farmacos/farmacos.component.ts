@@ -11,10 +11,12 @@ import { ApiService } from '../../core/services/api.service';
 export class FarmacosComponent implements OnInit {
   farmacos: IFarmaco[] = [];
 
-  constructor(private api: ApiService) {}
+  constructor(private _api: ApiService) {}
 
   ngOnInit(): void {
-    this.api.getFarmacos().subscribe({
+    console.log("FARMACOS");
+    
+    this._api.getFarmacos().subscribe({
       next: (res) => {
         this.farmacos = res;
         console.log('Fármacos cargados:', res);
