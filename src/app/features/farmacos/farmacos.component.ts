@@ -1,29 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { IFarmaco } from '../../core/models/farmaco.model';
-import { ApiService } from '../../core/services/api.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-farmacos',
   standalone: false,
   templateUrl: './farmacos.component.html',
-  styleUrl: './farmacos.component.scss'
+  styleUrls: ['./farmacos.component.scss'],
 })
-export class FarmacosComponent implements OnInit {
-  farmacos: IFarmaco[] = [];
+export class FarmacosComponent {
+  searchTerm: string = '';
 
-  constructor(private _api: ApiService) {}
+  onSearch() {
+    console.log('Buscando:', this.searchTerm);
+    // Lógica para buscar por nombre o principio activo
+  }
 
-  ngOnInit(): void {
-    console.log("FARMACOS");
-    
-    this._api.getFarmacos().subscribe({
-      next: (res) => {
-        this.farmacos = res;
-        console.log('Fármacos cargados:', res);
-      },
-      error: (err) => {
-        console.error('Error al obtener fármacos:', err);
-      }
-    });
+  clearSearch() {
+    this.searchTerm = '';
   }
 }

@@ -10,9 +10,11 @@
   <span class="spacer"></span>
 
   <ng-container *ngIf="isAuthenticated$ | async; else publicLinks">
-    <a mat-button routerLink="/dashboard/farmacos">Fármacos</a>
+    <a mat-button routerLink="/dashboard/farmacos">Buscar por fármaco</a>
+    <a mat-button routerLink="/dashboard/farmacos">Buscar por bacteria</a>
     <a mat-button routerLink="/dashboard/favoritos">Favoritos</a>
     <a mat-button routerLink="/dashboard/formulas">Fórmulas</a>
+    <a mat-button routerLink="/dashboard/cuenta">Cuenta</a>
     <button mat-button (click)="logout()"><a>Cerrar sesión</a></button>
   </ng-container>
 

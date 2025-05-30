@@ -12,12 +12,12 @@ export class FavoritosService {
   constructor(private _http: HttpClient) {}
 
   // Obtener todos los fármacos favoritos de un usuario
-  getFavoritos(id_usuario: number): Observable<IFarmaco[]> {
+  public getFavoritos(id_usuario: string): Observable<IFarmaco[]> {
     return this._http.get<IFarmaco[]>(`${this._apiUrl}/${id_usuario}`);
   }
 
   // Agregar un fármaco a favoritos
-  agregarFavorito(
+  public agregarFavorito(
     id_usuario: number,
     id_farmaco: number
   ): Observable<{ msg: string }> {
@@ -28,7 +28,10 @@ export class FavoritosService {
   }
 
   // Eliminar un fármaco de favoritos
-  eliminarFavorito(id_usuario: number, id_farmaco: number): Observable<void> {
+  public eliminarFavorito(
+    id_usuario: number,
+    id_farmaco: number
+  ): Observable<void> {
     return this._http.delete<void>(
       `${this._apiUrl}/${id_usuario}/${id_farmaco}`
     );

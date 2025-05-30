@@ -38,8 +38,9 @@ export class RegisterComponent {
           this._notification.show('Registro exitoso');
         },
         error: (err) => {
-          this.errorMsg = err.error?.msg || 'Error al registrar el usuario';
-          console.error(err);
+          this._notification.show(
+            err.error?.msg || 'Error al registrar el usuario'
+          );
         },
       });
     }

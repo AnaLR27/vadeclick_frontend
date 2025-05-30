@@ -1,12 +1,34 @@
-<h2>Listado de Fármacos</h2>
+<mat-card class="farmacos-card">
+  <h2>Búsqueda de fármacos</h2>
 
-<ul *ngIf="farmacos.length > 0; else cargando">
-  <li *ngFor="let f of farmacos">
-    {{ f.nombre_comercial }} -
-    <a [href]="f.url_ficha_tecnica" target="_blank">Ficha técnica</a>
-  </li>
-</ul>
+  <form (ngSubmit)="onSearch()">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Nombre comercial o principio activo</mat-label>
+      <input
+        matInput
+        placeholder="Ej: Amoxicilina, Ibuprofeno..."
+        [(ngModel)]="searchTerm"
+        name="search"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        *ngIf="searchTerm"
+        (click)="clearSearch()"
+        type="button"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
 
-<ng-template #cargando>
-  <p>Cargando fármacos...</p>
-</ng-template>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!searchTerm"
+    >
+      Buscar
+    </button>
+  </form>
+</mat-card>

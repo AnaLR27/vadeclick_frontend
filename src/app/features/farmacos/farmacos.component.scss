@@ -1,0 +1,24 @@
+@use "variables" as *;
+
+.farmacos-card {
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  min-width: 1000px;
+  min-height: 60vh;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: white;
+
+  h2 {
+    color: $title;
+  }
+
+
+}
+
+.full-width {
+  width: 100%;
+}

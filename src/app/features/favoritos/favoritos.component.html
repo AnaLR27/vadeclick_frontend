@@ -1,23 +1,25 @@
+<div class="container">
+  <mat-card class="favoritos-card">
+    <h2>Mis Fármacos Favoritos</h2>
 
-<mat-card class="favoritos-card">
-  <h2>Mis Fármacos Favoritos</h2>
+    <div *ngIf="favoritos.length === 0">No tienes fármacos guardados.</div>
 
-  <div *ngIf="favoritos.length === 0">No tienes fármacos guardados.</div>
-
-  <mat-list *ngIf="favoritos.length > 0">
-    <mat-list-item *ngFor="let farmaco of favoritos">
-      <div class="farmaco-info">
-        <a [href]="farmaco.url_ficha_tecnica" target="_blank">{{
-          farmaco.nombre_comercial
-        }}</a>
-      </div>
-      <button
-        mat-icon-button
-        color="warn"
-        (click)="eliminarFavorito(farmaco.id_farmaco)"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-list-item>
-  </mat-list>
-</mat-card>
+    <mat-list *ngIf="favoritos.length > 0">
+      <mat-list-item *ngFor="let farmaco of favoritos">
+        <div class="item">
+          <div class="farmaco-info">
+            <a [href]="farmaco.url_ficha_tecnica" target="_blank">{{
+              farmaco.nombre_comercial
+            }}</a>
+          </div>
+          <button
+            mat-icon-button
+            (click)="eliminarFavorito(farmaco.id_farmaco)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>

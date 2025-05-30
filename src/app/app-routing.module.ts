@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FarmacosComponent } from './features/farmacos/farmacos.component';
 import { FavoritosComponent } from './features/favoritos/favoritos.component';
 import { FormulasComponent } from './features/formulas/formulas.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -29,10 +30,28 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () =>
-      import('./features/dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
-      ),
+    canActivate: [AuthGuard],
+    // loadChildren: () =>
+    //   import('./features/dashboard/dashboard.module').then(
+    //     (m) => m.DashboardModule
+    //   ),
+
+    children: [
+      {
+        path: 'farmacos',
+        loadChildren: () =>
+          import('./features/farmacos/farmacos.module').then(
+            (m) => m.FarmacosModule
+          ),
+      },
+      {
+        path: 'favoritos',
+        loadChildren: () =>
+          import('./features/favoritos/favoritos.module').then(
+            (m) => m.FavoritosModule
+          ),
+      },
+    ],
   },
 ];
 

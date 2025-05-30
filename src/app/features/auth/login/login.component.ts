@@ -13,7 +13,6 @@ import { NotificationService } from '../../../core/services/notification.service
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  errorMsg: string | null = null;
 
   constructor(
     private _fb: FormBuilder,
@@ -34,12 +33,13 @@ export class LoginComponent {
       this._authService.login(loginData).subscribe({
         next: (res) => {
           localStorage.setItem('token', res.token);
+          localStorage.setItem('user_id', res.user_id);
           this._router.navigate(['/dashboard']);
           this._notification.show('Login exitoso');
         },
         error: (err) => {
           console.error(err);
-          this.errorMsg = 'Credenciales inválidas';
+          this._notification.show(err.error?.msg || 'Credenciales inválidas');
         },
       });
     }

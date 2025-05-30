@@ -9,7 +9,7 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent  {
-  isAuthenticated$!: Observable<boolean>;
+ public isAuthenticated$!: Observable<boolean>;
 
   constructor(private _authService: AuthService) {
     this.isAuthenticated$ = this._authService.isAuthenticated$;
