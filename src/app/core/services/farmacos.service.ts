@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IFarmaco } from '../models/farmaco.model';
 
@@ -11,16 +11,32 @@ export class FarmacosService {
 
   constructor(private http: HttpClient) {}
 
-  getFarmacos(): Observable<IFarmaco[]> {
+  /**
+   * Obtiene todos los farmacos de la base de datos
+   * @returns Observable<IFarmaco[]>
+   */
+  public getFarmacos(): Observable<IFarmaco[]> {
     return this.http.get<IFarmaco[]>(this._apiUrl);
   }
 
-  getFarmacoById(id: string): Observable<IFarmaco> {
-    return this.http.get<IFarmaco>(`${this._apiUrl}/${id}`);
+  /**
+   * Obtiene la informacion de un farmaco por su id
+   * @param id_farmaco string
+   * @returns Observable<IFarmaco>
+   */
+  public getFarmacoById(id_farmaco: string): Observable<IFarmaco> {
+    return this.http.get<IFarmaco>(`${this._apiUrl}/${id_farmaco}`);
   }
 
   // Si más adelante quieres buscar por nombre desde el backend
-  searchFarmacos(nombre: string): Observable<IFarmaco[]> {
-    return this.http.get<IFarmaco[]>(`${this._apiUrl}?nombre=${nombre}`);
+
+  /**
+   * Devuelve los fármacos que coinciden por el nombre comercial o principio activo
+   * @param nombre string
+   * @returns Observable<IFarmaco[]>
+   */
+  public searchFarmacosByName(nombre: string): Observable<IFarmaco[]> {
+    const params = new HttpParams().set('q', nombre);
+    return this.http.get<IFarmaco[]>(`${this._apiUrl}/buscar`, { params });
   }
 }

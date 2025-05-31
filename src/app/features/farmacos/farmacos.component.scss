@@ -15,10 +15,24 @@
   h2 {
     color: $title;
   }
+  button {
+    font-size: 15px;
+    padding: 0.5rem;
+    background-color: $title;
+    cursor: pointer;
+  }
 
 
 }
 
+.form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
 .full-width {
-  width: 100%;
+  width: 80%;
 }

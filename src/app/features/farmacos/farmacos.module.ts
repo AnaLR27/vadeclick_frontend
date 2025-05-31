@@ -4,8 +4,9 @@ import { FarmacosComponent } from './farmacos.component';
 import { FarmacosRoutingModule } from './farmacos-routing.module';
 import { MatCard } from '@angular/material/card';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
-import { MatIcon } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import {  FormsModule } from '@angular/forms';
+import { ButtonModule } from '../../components/button/button.module';
 
 @NgModule({
   declarations: [FarmacosComponent],
@@ -16,7 +17,9 @@ import { FormsModule } from '@angular/forms';
     MatInput,
     MatLabel,
     MatIcon,
+    MatIconModule,
     FormsModule,
+    ButtonModule,
     FarmacosRoutingModule,
   ],
 })

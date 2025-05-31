@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FarmacosService } from '../../core/services/farmacos.service';
+import { IFarmaco } from '../../core/models/farmaco.model';
 
 @Component({
   selector: 'app-farmacos',
@@ -7,11 +9,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./farmacos.component.scss'],
 })
 export class FarmacosComponent {
-  searchTerm: string = '';
+  public searchTerm: string = '';
+  public farmacos!: IFarmaco[];
+
+  constructor(private _farmacosService: FarmacosService) {}
 
   onSearch() {
+    if (!this.searchTerm.trim()) return;
     console.log('Buscando:', this.searchTerm);
-    // Lógica para buscar por nombre o principio activo
+    this._farmacosService
+      .searchFarmacosByName(this.searchTerm.trim())
+      .subscribe({
+        next: (data) => {
+          this.farmacos = data;
+          console.log('Resultados:', this.farmacos);
+        },
+        error: (err) => {
+          console.error('Error al buscar fármacos:', err);
+        },
+      });
   }
 
   clearSearch() {

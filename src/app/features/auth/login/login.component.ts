@@ -12,7 +12,7 @@ import { NotificationService } from '../../../core/services/notification.service
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+  public loginForm: FormGroup;
 
   constructor(
     private _fb: FormBuilder,

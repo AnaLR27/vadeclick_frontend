@@ -1,34 +1,32 @@
 <mat-card class="farmacos-card">
-  <h2>Búsqueda de fármacos</h2>
+  <h2>Búsqueda de fármaco</h2>
 
   <form (ngSubmit)="onSearch()">
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Nombre comercial o principio activo</mat-label>
-      <input
-        matInput
-        placeholder="Ej: Amoxicilina, Ibuprofeno..."
-        [(ngModel)]="searchTerm"
-        name="search"
-        required
-      />
-      <button
-        mat-icon-button
-        matSuffix
-        *ngIf="searchTerm"
-        (click)="clearSearch()"
-        type="button"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+    <div class="form-container">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Nombre comercial o principio activo</mat-label>
+        <input
+          matInput
+          placeholder="Ej: Amoxicilina, Ibuprofeno..."
+          [(ngModel)]="searchTerm"
+          name="search"
+          required
+        />
+      </mat-form-field>
 
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="!searchTerm"
-    >
-      Buscar
-    </button>
+      <app-button
+        text="Buscar"
+        icon="search"
+        [disabled]="!searchTerm"
+        (clicked)="onSearch()"
+      ></app-button>
+
+      <app-button
+        text="Reset"
+        icon="close"
+        [disabled]="!searchTerm"
+        (clicked)="clearSearch()"
+      ></app-button>
+    </div>
   </form>
 </mat-card>
