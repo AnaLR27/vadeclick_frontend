@@ -54,6 +54,33 @@ export class FarmacosComponent implements OnInit {
 
   public toggleFavorite(farmaco: IFarmaco): void {
     console.log('Favorito!');
-    
+
+    if (farmaco.esFavorito) {
+      // Si ya es favorito, eliminar
+      this._favoritosService
+        .eliminarFavorito(Number(this.userId), farmaco.id_farmaco)
+        .subscribe({
+          next: () => {
+            farmaco.esFavorito = false;
+            console.log('Favorito eliminado');
+          },
+          error: (err) => {
+            console.error('Error al eliminar favorito:', err);
+          },
+        });
+    } else {
+      // Si no es favorito, agregar
+      this._favoritosService
+        .agregarFavorito(Number(this.userId), farmaco.id_farmaco)
+        .subscribe({
+          next: () => {
+            farmaco.esFavorito = true;
+            console.log('Favorito añadido');
+          },
+          error: (err) => {
+            console.error('Error al añadir favorito:', err);
+          },
+        });
+    }
   }
 }
