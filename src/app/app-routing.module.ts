@@ -45,6 +45,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'bacterias',
+        loadChildren: () =>
+          import('./features/bacterias/bacterias.module').then(
+            (m) => m.BacteriasModule
+          ),
+      },
+      {
         path: 'favoritos',
         loadChildren: () =>
           import('./features/favoritos/favoritos.module').then(
