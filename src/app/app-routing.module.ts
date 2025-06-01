@@ -58,6 +58,11 @@ const routes: Routes = [
             (m) => m.FormulasModule
           ),
       },
+      {
+        path: 'cuenta',
+        loadChildren: () =>
+          import('./features/cuenta/cuenta.module').then((m) => m.CuentaModule),
+      },
     ],
   },
 ];
