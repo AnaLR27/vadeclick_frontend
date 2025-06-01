@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FarmacosService } from '../../core/services/farmacos.service';
 import { IFarmaco } from '../../core/models/farmaco.model';
+import { forkJoin } from 'rxjs';
+import { FavoritosService } from '../../core/services/favoritos.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-farmacos',
@@ -8,29 +11,49 @@ import { IFarmaco } from '../../core/models/farmaco.model';
   templateUrl: './farmacos.component.html',
   styleUrls: ['./farmacos.component.scss'],
 })
-export class FarmacosComponent {
+export class FarmacosComponent implements OnInit {
   public searchTerm: string = '';
   public farmacos!: IFarmaco[];
+  public userId!: string;
 
-  constructor(private _farmacosService: FarmacosService) {}
-
-  onSearch() {
-    if (!this.searchTerm.trim()) return;
-    console.log('Buscando:', this.searchTerm);
-    this._farmacosService
-      .searchFarmacosByName(this.searchTerm.trim())
-      .subscribe({
-        next: (data) => {
-          this.farmacos = data;
-          console.log('Resultados:', this.farmacos);
-        },
-        error: (err) => {
-          console.error('Error al buscar fármacos:', err);
-        },
-      });
+  constructor(
+    private _authService: AuthService,
+    private _farmacosService: FarmacosService,
+    private _favoritosService: FavoritosService
+  ) {}
+  ngOnInit(): void {
+    if (this._authService.getUserId()) {
+      this.userId = this._authService.getUserId();
+    }
   }
 
-  clearSearch() {
+  onSearch(): void {
+    const term = this.searchTerm.trim();
+    if (!term) return;
+
+    forkJoin({
+      resultados: this._farmacosService.searchFarmacosByName(term),
+      favoritos: this._favoritosService.getFavoritos(this.userId),
+    }).subscribe({
+      next: ({ resultados, favoritos }) => {
+        const idsFavoritos = new Set(favoritos.map((f) => f.id_farmaco));
+        this.farmacos = resultados.map((farmaco) => ({
+          ...farmaco,
+          esFavorito: idsFavoritos.has(farmaco.id_farmaco),
+        }));
+        console.log(this.farmacos);
+      },
+      error: (err) => {
+        console.error('Error al cargar fármacos y favoritos:', err);
+      },
+    });
+  }
+  public clearSearch() {
     this.searchTerm = '';
+  }
+
+  public toggleFavorite(farmaco: IFarmaco): void {
+    console.log('Favorito!');
+    
   }
 }

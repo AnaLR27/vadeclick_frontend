@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     const isAuthenticated = this._authService.isLoggedIn(); // Verifica si hay token
-    console.log('is autenticated:', isAuthenticated);
     
     if (!isAuthenticated) {
       return this._router.createUrlTree(['/login']);

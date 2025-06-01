@@ -1,0 +1,11 @@
+@use "variables" as *;
+
+a {
+  color: $dark-red;
+  text-decoration: none;
+}
+
+button {
+  color: $dark-red;
+  margin-right: 0.2rem;
+}

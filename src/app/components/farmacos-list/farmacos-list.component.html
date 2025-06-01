@@ -1,0 +1,20 @@
+<div *ngIf="farmacos && farmacos.length === 0">
+  No se encuentran resultados.
+</div>
+
+<mat-list class="list" *ngIf="farmacos && farmacos.length > 0">
+  <mat-list-item *ngFor="let farmaco of farmacos">
+    <div class="item">
+      <div class="farmaco-info">
+        {{ farmaco.nombre_comercial }}
+      </div>
+      <app-button-bar
+        [showFavorite]="true"
+        [showDetails]="true"
+        [fichaUrl]="farmaco.url_ficha_tecnica"
+        [isFavorite]="farmaco.esFavorito"
+        (toggleFavorite)="addFavorite(farmaco)"
+      />
+    </div>
+  </mat-list-item>
+</mat-list>

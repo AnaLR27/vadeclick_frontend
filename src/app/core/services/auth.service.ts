@@ -33,9 +33,16 @@ export class AuthService {
   public isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
-  
+
+  public getUserId(): string {
+    return localStorage.getItem('user_id')!;
+  }
+
   public register(payload: RegisterPayload): Observable<{ msg: string }> {
-    return this._http.post<{ msg: string }>(`${this._apiUrl}/register`, payload);
+    return this._http.post<{ msg: string }>(
+      `${this._apiUrl}/register`,
+      payload
+    );
   }
 
   public getUsuarioPorId(id_usuario: number): Observable<Usuario> {

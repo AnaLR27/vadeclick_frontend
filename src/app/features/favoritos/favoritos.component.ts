@@ -31,7 +31,7 @@ export class FavoritosComponent implements OnInit {
     }
   }
 
-  public eliminarFavorito(idFarmaco: number) {
+  public deleteFavorite(idFarmaco: number) {
     const userId = Number(localStorage.getItem('user_id'));
     this._favoritosService.eliminarFavorito(userId, idFarmaco).subscribe({
       next: () => {

@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { FavoritosRoutingModule } from './favoritos-routing.module';
 import { MatList, MatListItem } from '@angular/material/list';
+import { ButtonBarModule } from '../../components/button-bar/button-bar.module';
 
 @NgModule({
   declarations: [FavoritosComponent],
@@ -18,6 +19,7 @@ import { MatList, MatListItem } from '@angular/material/list';
     MatList,
     MatListItem,
     RouterModule, // Para usar routerLink
+    ButtonBarModule,
     FavoritosRoutingModule,
   ],
   exports: [FavoritosComponent],

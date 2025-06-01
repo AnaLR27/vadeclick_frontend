@@ -51,6 +51,13 @@ const routes: Routes = [
             (m) => m.FavoritosModule
           ),
       },
+      {
+        path: 'formulas',
+        loadChildren: () =>
+          import('./features/formulas/formulas.module').then(
+            (m) => m.FormulasModule
+          ),
+      },
     ],
   },
 ];

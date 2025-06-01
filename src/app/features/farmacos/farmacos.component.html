@@ -29,4 +29,8 @@
       ></app-button>
     </div>
   </form>
+  <app-farmacos-list
+    [farmacos]="farmacos"
+    (toggleFavorite)="toggleFavorite($event)"
+  ></app-farmacos-list>
 </mat-card>

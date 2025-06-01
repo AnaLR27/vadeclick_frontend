@@ -7,6 +7,7 @@ import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import {  FormsModule } from '@angular/forms';
 import { ButtonModule } from '../../components/button/button.module';
+import { FarmacosListModule } from '../../components/farmacos-list/farmacos-list.module';
 
 @NgModule({
   declarations: [FarmacosComponent],
@@ -20,6 +21,7 @@ import { ButtonModule } from '../../components/button/button.module';
     MatIconModule,
     FormsModule,
     ButtonModule,
+    FarmacosListModule,
     FarmacosRoutingModule,
   ],
 })

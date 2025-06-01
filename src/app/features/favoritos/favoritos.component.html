@@ -8,16 +8,14 @@
       <mat-list-item *ngFor="let farmaco of favoritos">
         <div class="item">
           <div class="farmaco-info">
-            <a [href]="farmaco.url_ficha_tecnica" target="_blank">{{
-              farmaco.nombre_comercial
-            }}</a>
+            {{ farmaco.nombre_comercial }}
           </div>
-          <button
-            mat-icon-button
-            (click)="eliminarFavorito(farmaco.id_farmaco)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
+          <app-button-bar
+            [showDelete]="true"
+            [showDetails]="true"
+            [fichaUrl]="farmaco.url_ficha_tecnica"
+            (delete)="deleteFavorite(farmaco.id_farmaco)"
+          />
         </div>
       </mat-list-item>
     </mat-list>

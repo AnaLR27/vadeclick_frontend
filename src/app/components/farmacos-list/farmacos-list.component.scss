@@ -1,0 +1,16 @@
+
+.farmaco-info {
+  flex: 1;
+  font-size: 16px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid lightgray;
+}
+.list{
+  margin-bottom: 1rem;
+}

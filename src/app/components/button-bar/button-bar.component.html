@@ -1,0 +1,30 @@
+<div class="farmaco-actions">
+  <button
+    *ngIf="showFavorite"
+    mat-icon-button
+    (click)="toggleFavorite.emit()"
+    title="Favorito"
+  >
+    <mat-icon *ngIf="isFavorite">favorite</mat-icon>
+    <mat-icon *ngIf="!isFavorite">favorite_border</mat-icon>
+  </button>
+
+  <button
+    *ngIf="showDelete"
+    mat-icon-button
+    (click)="delete.emit()"
+    title="Eliminar"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+
+  <a
+    *ngIf="showDetails"
+    [href]="fichaUrl"
+    target="_blank"
+    mat-icon-button
+    title="Ver ficha técnica"
+  >
+    <mat-icon>arrow_forward</mat-icon>
+  </a>
+</div>
