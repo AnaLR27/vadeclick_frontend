@@ -17,6 +17,7 @@ import { FavoritosService } from '../../core/services/favoritos.service';
 export class BacteriasComponent implements OnInit {
   public form = new FormGroup({
     bacterias: new FormControl<string[]>([]),
+    resistencias: new FormControl<string[]>([]),
   });
   public resultados!: (IPrincipioActivo & {
     isPActivoOpened: boolean;
@@ -52,12 +53,15 @@ export class BacteriasComponent implements OnInit {
 
   public onSubmit(): void {
     const bacterias = this.form.value.bacterias || [];
+    const resistencias = this.form.value.resistencias || [];
 
     if (!bacterias.length) return;
 
-    // Paso 1: obtenemos favoritos y principios en paralelo
     forkJoin({
-      principios: this._bacteriasService.getPrincipiosEficaces(bacterias),
+      principios: this._bacteriasService.getPrincipiosEficaces(
+        bacterias,
+        resistencias
+      ),
       favoritos: this._favoritosService.getFavoritos(this.userId),
     }).subscribe({
       next: ({ principios, favoritos }) => {
@@ -69,7 +73,6 @@ export class BacteriasComponent implements OnInit {
           farmacosAsociados: [],
         }));
 
-        // Paso 2: por cada principio, obtenemos sus fármacos
         this.resultados.forEach((res) => {
           this._farmacosService
             .getFarmacosPorIdPrincipio(String(res.id_principio))
@@ -93,11 +96,28 @@ export class BacteriasComponent implements OnInit {
     });
   }
 
-  public clearSearch() {
+  public clearBacterias() {
     this.form.get('bacterias')?.setValue([]);
+  }
+  public clearResistencias() {
+    this.form.get('resistencias')?.setValue([]);
   }
 
   public togglePActivo(pActivo: IPrincipioActivo) {
     pActivo.isPActivoOpened = !pActivo.isPActivoOpened;
+  }
+
+  public addResistencia(nombre: string): void {
+    const current = this.form.get('resistencias')?.value || [];
+    if (!current.includes(nombre)) {
+      this.form.get('resistencias')?.setValue([...current, nombre]);
+    }
+  }
+
+  public removeResistencia(nombre: string): void {
+    const current = this.form.get('resistencias')?.value || [];
+    this.form
+      .get('resistencias')
+      ?.setValue(current.filter((r) => r !== nombre));
   }
 }

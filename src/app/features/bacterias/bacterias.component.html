@@ -21,17 +21,12 @@
         [disabled]="!input.value || !input.value.trim()"
         (clicked)="addBacteria(input.value); input.value = ''"
       ></app-button>
-      <app-button
-        text="Buscar"
-        icon="search"
-        [disabled]="!form.value.bacterias?.length"
-        (clicked)="onSubmit()"
-      ></app-button>
+
       <app-button
         text="Reset"
         icon="close"
         [disabled]="!form.value.bacterias?.length"
-        (clicked)="clearSearch()"
+        (clicked)="clearBacterias()"
       ></app-button>
     </div>
     <!-- Chips personalizadas -->
@@ -41,9 +36,56 @@
         <button type="button" (click)="removeBacteria(bacteria)">×</button>
       </div>
     </div>
+
+    <!-- Campo para añadir resistencias -->
+    <div class="form-container">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Añadir principio activo resistente</mat-label>
+        <input
+          matInput
+          placeholder="Ej: Amoxicilina, Ciprofloxacino..."
+          (keydown.enter)="
+            addResistencia(resInput.value);
+            resInput.value = '';
+            $event.preventDefault()
+          "
+          #resInput
+          required
+        />
+      </mat-form-field>
+      <app-button
+        text="Añadir resistencia"
+        icon="add"
+        [disabled]="!resInput.value || !resInput.value.trim()"
+        (clicked)="addResistencia(resInput.value); resInput.value = ''"
+      ></app-button>
+      <app-button
+        text="Reset"
+        icon="close"
+        [disabled]="!form.value.resistencias?.length"
+        (clicked)="clearResistencias()"
+      ></app-button>
+      <!-- Chips para resistencias -->
+    </div>
+    <div class="chip-container">
+      <div class="chip" *ngFor="let resistencia of form.value.resistencias">
+        {{ resistencia }}
+        <button type="button" (click)="removeResistencia(resistencia)">
+          ×
+        </button>
+      </div>
+    </div>
+    <div class="search">
+      <app-button
+        text="Buscar"
+        icon="search"
+        [disabled]="!form.value.bacterias?.length"
+        (clicked)="onSubmit()"
+      ></app-button>
+    </div>
+    <app-principio-activo-list
+      [resultados]="resultados"
+      (togglePActivo)="togglePActivo($event)"
+    ></app-principio-activo-list>
   </form>
-  <app-principio-activo-list
-    [resultados]="resultados"
-    (togglePActivo)="togglePActivo($event)"
-  ></app-principio-activo-list>
 </mat-card>
