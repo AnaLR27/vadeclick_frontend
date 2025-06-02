@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IFarmaco } from '../../core/models/farmaco.model';
-import { AuthService } from '../../core/services/auth.service';
-import { FarmacosService } from '../../core/services/farmacos.service';
 import { FavoritosService } from '../../core/services/favoritos.service';
 
 @Component({

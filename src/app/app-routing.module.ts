@@ -4,6 +4,7 @@ import { FarmacosComponent } from './features/farmacos/farmacos.component';
 import { FavoritosComponent } from './features/favoritos/favoritos.component';
 import { FormulasComponent } from './features/formulas/formulas.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { AdminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -31,7 +32,6 @@ const routes: Routes = [
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
-
     children: [
       {
         path: 'farmacos',
@@ -65,6 +65,22 @@ const routes: Routes = [
         path: 'info',
         loadChildren: () =>
           import('./features/info/info.module').then((m) => m.InfoModule),
+      },
+      {
+        path: 'cuenta',
+        loadChildren: () =>
+          import('./features/cuenta/cuenta.module').then((m) => m.CuentaModule),
+      },
+    ],
+  },
+  {
+    path: 'admin',
+    canActivate: [AdminGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./features/admin/admin.module').then((m) => m.AdminModule),
       },
       {
         path: 'cuenta',

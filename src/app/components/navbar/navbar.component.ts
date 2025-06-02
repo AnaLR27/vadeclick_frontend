@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
+import { ERol } from '../../core/enum/rol.enum';
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +9,18 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent  {
- public isAuthenticated$!: Observable<boolean>;
+export class NavbarComponent implements OnInit {
+  public isAuthenticated$!: Observable<boolean>;
+  public rol$!: Observable<ERol | null>;
 
-  constructor(private _authService: AuthService) {
+  constructor(private _authService: AuthService) {}
+
+  ngOnInit(): void {
     this.isAuthenticated$ = this._authService.isAuthenticated$;
+    this.rol$ = this._authService.rol$;
   }
 
-  logout() {
+  logout(): void {
     this._authService.logout();
   }
 }

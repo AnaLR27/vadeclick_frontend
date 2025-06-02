@@ -4,6 +4,7 @@ import { LoginPayload } from '../../../core/models/login-payload.model';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { NotificationService } from '../../../core/services/notification.service';
+import { ERol } from '../../../core/enum/rol.enum';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,14 @@ export class LoginComponent {
         next: (res) => {
           localStorage.setItem('token', res.token);
           localStorage.setItem('user_id', res.user_id);
-          this._router.navigate(['/dashboard/info']);
+          localStorage.setItem('rol', res.rol);
+          const rol = localStorage.getItem('rol');
+
+          if (rol === ERol.ADMIN) {
+            this._router.navigate(['/admin']);
+          } else {
+            this._router.navigate(['/dashboard/info']);
+          }
           this._notification.show('Login exitoso');
         },
         error: (err) => {

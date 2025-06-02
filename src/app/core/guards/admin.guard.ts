@@ -7,7 +7,7 @@ import { ERol } from '../enum/rol.enum';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private _authService: AuthService, private _router: Router) {}
 
   canActivate():
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     const isAuthenticated = this._authService.isLoggedIn(); // Verifica si hay token
     const getUserRol = this._authService.getUserRol();
 
-    if (!isAuthenticated || getUserRol != ERol.USER) {
+    if (!isAuthenticated || getUserRol != ERol.ADMIN) {
       this._authService.logout();
       return this._router.createUrlTree(['/login']);
     }
