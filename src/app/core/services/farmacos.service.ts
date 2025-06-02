@@ -39,4 +39,17 @@ export class FarmacosService {
     const params = new HttpParams().set('q', nombre);
     return this.http.get<IFarmaco[]>(`${this._apiUrl}/buscar`, { params });
   }
+
+  /**
+   * Obtiene todos los fármacos relacionados con un principio activo por su ID
+   * @param idPrincipio string
+   * @returns Observable<IFarmaco[]>
+   */
+  public getFarmacosPorIdPrincipio(
+    idPrincipio: string
+  ): Observable<IFarmaco[]> {
+    return this.http.get<IFarmaco[]>(
+      `${this._apiUrl}/principio/${idPrincipio}`
+    );
+  }
 }

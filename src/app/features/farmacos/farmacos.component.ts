@@ -48,12 +48,12 @@ export class FarmacosComponent implements OnInit {
       },
     });
   }
+
   public clearSearch() {
     this.searchTerm = '';
   }
 
   public toggleFavorite(farmaco: IFarmaco): void {
-    console.log('Favorito!');
 
     if (farmaco.esFavorito) {
       // Si ya es favorito, eliminar
@@ -62,7 +62,6 @@ export class FarmacosComponent implements OnInit {
         .subscribe({
           next: () => {
             farmaco.esFavorito = false;
-            console.log('Favorito eliminado');
           },
           error: (err) => {
             console.error('Error al eliminar favorito:', err);
@@ -75,7 +74,6 @@ export class FarmacosComponent implements OnInit {
         .subscribe({
           next: () => {
             farmaco.esFavorito = true;
-            console.log('Favorito añadido');
           },
           error: (err) => {
             console.error('Error al añadir favorito:', err);

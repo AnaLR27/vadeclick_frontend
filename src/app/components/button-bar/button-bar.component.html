@@ -1,5 +1,15 @@
 <div class="farmaco-actions">
   <button
+    *ngIf="showFarmacos"
+    mat-icon-button
+    (click)="togglePActivo.emit()"
+    title="Mostrar fármacos"
+  >
+    <mat-icon *ngIf="isPActivoOpened">keyboard_arrow_up</mat-icon>
+    <mat-icon *ngIf="!isPActivoOpened">keyboard_arrow_down</mat-icon>
+  </button>
+
+  <button
     *ngIf="showFavorite"
     mat-icon-button
     (click)="toggleFavorite.emit()"
@@ -25,6 +35,6 @@
     mat-icon-button
     title="Ver ficha técnica"
   >
-    <mat-icon>arrow_forward</mat-icon>
+    <mat-icon>launch</mat-icon>
   </a>
 </div>

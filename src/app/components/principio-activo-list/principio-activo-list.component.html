@@ -1,0 +1,22 @@
+<div *ngIf="resultados && resultados.length === 0">
+  No se encuentran resultados.
+</div>
+
+<mat-list class="list" *ngIf="resultados && resultados.length > 0">
+  <div *ngFor="let resultado of resultados">
+    <div class="row">
+      <div class="item">
+        <div class="farmaco-info">
+          {{ resultado.principio_activo }}
+        </div>
+        <app-button-bar
+          [showFarmacos]="true"
+          [isPActivoOpened]="resultado.isPActivoOpened"
+          (togglePActivo)="onToggle(resultado)"
+        />
+      </div>
+      <app-farmacos-list *ngIf="resultado.isPActivoOpened" [farmacos]="resultado.farmacosAsociados" class="farmacos">
+      </app-farmacos-list>
+    </div>
+  </div>
+</mat-list>

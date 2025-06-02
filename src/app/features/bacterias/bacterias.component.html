@@ -1,1 +1,49 @@
-<p>bacterias works!</p>
+<mat-card class="bacterias-card">
+  <h2>Buscar principios activos por bacterias</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Añadir bacteria para buscar</mat-label>
+        <input
+          matInput
+          placeholder="Ej: Staphylococcus aureus, Pseudomonas aeruginosa..."
+          (keydown.enter)="
+            addBacteria(input.value); input.value = ''; $event.preventDefault()
+          "
+          #input
+          required
+        />
+      </mat-form-field>
+      <app-button
+        text="Añadir"
+        icon="add"
+        [disabled]="!input.value || !input.value.trim()"
+        (clicked)="addBacteria(input.value); input.value = ''"
+      ></app-button>
+      <app-button
+        text="Buscar"
+        icon="search"
+        [disabled]="!form.value.bacterias?.length"
+        (clicked)="onSubmit()"
+      ></app-button>
+      <app-button
+        text="Reset"
+        icon="close"
+        [disabled]="!form.value.bacterias?.length"
+        (clicked)="clearSearch()"
+      ></app-button>
+    </div>
+    <!-- Chips personalizadas -->
+    <div class="chip-container">
+      <div class="chip" *ngFor="let bacteria of form.value.bacterias">
+        {{ bacteria }}
+        <button type="button" (click)="removeBacteria(bacteria)">×</button>
+      </div>
+    </div>
+  </form>
+  <app-principio-activo-list
+    [resultados]="resultados"
+    (togglePActivo)="togglePActivo($event)"
+  ></app-principio-activo-list>
+</mat-card>
