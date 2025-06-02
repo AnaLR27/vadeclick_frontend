@@ -34,7 +34,7 @@ export class LoginComponent {
         next: (res) => {
           localStorage.setItem('token', res.token);
           localStorage.setItem('user_id', res.user_id);
-          this._router.navigate(['/dashboard']);
+          this._router.navigate(['/dashboard/info']);
           this._notification.show('Login exitoso');
         },
         error: (err) => {

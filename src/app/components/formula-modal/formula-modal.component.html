@@ -1,0 +1,27 @@
+<app-modal-wrapper [titulo]="titulo" (cerrado)="cerrar()">
+  <form class="formulario-formula" [formGroup]="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre de la fórmula</mat-label>
+      <input matInput formControlName="nombre_formula" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Patología</mat-label>
+      <input matInput formControlName="patologia" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput rows="3" formControlName="descripcion"></textarea>
+    </mat-form-field>
+
+    <div class="acciones-modal">
+      <app-button text="Cerrar" (clicked)="cerrar()"></app-button>
+      <app-button
+        *ngIf="modo !== 'ver'"
+        text="Guardar"
+        (clicked)="guardar()"
+      ></app-button>
+    </div>
+  </form>
+</app-modal-wrapper>

@@ -1,0 +1,23 @@
+.formulario-formula {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  input,
+  textarea {
+    &:disabled {
+      color: black !important;
+      -webkit-text-fill-color: black !important; // Safari fix
+      cursor: default;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.acciones-modal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}

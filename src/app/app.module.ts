@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-
 import { NavbarModule } from './components/navbar/navbar.module';
 import { FooterModule } from './components/footer/footer.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';

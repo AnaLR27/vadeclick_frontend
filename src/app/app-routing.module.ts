@@ -31,10 +31,6 @@ const routes: Routes = [
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
-    // loadChildren: () =>
-    //   import('./features/dashboard/dashboard.module').then(
-    //     (m) => m.DashboardModule
-    //   ),
 
     children: [
       {
@@ -64,6 +60,11 @@ const routes: Routes = [
           import('./features/formulas/formulas.module').then(
             (m) => m.FormulasModule
           ),
+      },
+      {
+        path: 'info',
+        loadChildren: () =>
+          import('./features/info/info.module').then((m) => m.InfoModule),
       },
       {
         path: 'cuenta',

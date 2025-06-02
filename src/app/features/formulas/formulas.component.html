@@ -1,1 +1,44 @@
-<p>formulas works!</p>
+<mat-card class="formulas-card">
+  <h2>Mis Fórmulas Magistrales</h2>
+
+  <div class="acciones-superiores">
+    <app-button
+      text="   Añadir nueva fórmula"
+      icon="add"
+      (clicked)="onNuevaFormula()"
+    ></app-button>
+  </div>
+
+  <div *ngIf="formulas&& formulas.length === 0" class="mensaje-vacio">
+    No tienes fórmulas registradas.
+  </div>
+
+  <mat-list *ngIf="formulas && formulas.length">
+    <mat-list-item *ngFor="let formula of formulas" class="formula-item">
+      <div class="info">
+        <h3>{{ formula.nombre_formula }}</h3>
+        <p>Patología: {{ formula.patologia }}</p>
+
+        <div class="acciones">
+          <button mat-icon-button color="accent" (click)="onVerMas(formula)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="onEditar(formula)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onEliminar(formula)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
+
+<app-formula-modal
+  *ngIf="mostrarModal"
+  [modo]="modalModo"
+  [formula]="formulaSeleccionada"
+  (cerrado)="cerrarModal()"
+  (guardado)="guardarFormula($event)"
+></app-formula-modal>
