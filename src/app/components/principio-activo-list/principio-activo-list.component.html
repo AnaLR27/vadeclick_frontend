@@ -15,7 +15,11 @@
           (togglePActivo)="onToggle(resultado)"
         />
       </div>
-      <app-farmacos-list *ngIf="resultado.isPActivoOpened" [farmacos]="resultado.farmacosAsociados" class="farmacos">
+      <app-farmacos-list
+        *ngIf="resultado.isPActivoOpened"
+        [farmacos]="resultado.farmacosAsociados"
+        class="farmacos"
+      >
       </app-farmacos-list>
     </div>
   </div>

@@ -21,6 +21,7 @@ export class FarmacosComponent implements OnInit {
     private _farmacosService: FarmacosService,
     private _favoritosService: FavoritosService
   ) {}
+  
   ngOnInit(): void {
     if (this._authService.getUserId()) {
       this.userId = this._authService.getUserId();
@@ -53,32 +54,5 @@ export class FarmacosComponent implements OnInit {
     this.searchTerm = '';
   }
 
-  public toggleFavorite(farmaco: IFarmaco): void {
 
-    if (farmaco.esFavorito) {
-      // Si ya es favorito, eliminar
-      this._favoritosService
-        .eliminarFavorito(Number(this.userId), farmaco.id_farmaco)
-        .subscribe({
-          next: () => {
-            farmaco.esFavorito = false;
-          },
-          error: (err) => {
-            console.error('Error al eliminar favorito:', err);
-          },
-        });
-    } else {
-      // Si no es favorito, agregar
-      this._favoritosService
-        .agregarFavorito(Number(this.userId), farmaco.id_farmaco)
-        .subscribe({
-          next: () => {
-            farmaco.esFavorito = true;
-          },
-          error: (err) => {
-            console.error('Error al añadir favorito:', err);
-          },
-        });
-    }
-  }
 }
