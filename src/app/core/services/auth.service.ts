@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginPayload } from '../models/login-payload.model';
 import { RegisterPayload } from '../models/register-payload.model';
 import { LoginResponse } from '../models/login-response.model';
-import { Usuario } from '../models/user.model';
+import { IUser } from '../models/user.model';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -45,9 +45,17 @@ export class AuthService {
     );
   }
 
-  public getUsuarioPorId(id_usuario: number): Observable<Usuario> {
-    return this._http.get<Usuario>(`${this._apiUrl}/${id_usuario}`);
+  public getUsuarioPorId(id_usuario: number): Observable<IUser> {
+    return this._http.get<IUser>(`${this._apiUrl}/${id_usuario}`);
   }
 
-  // Puedes añadir métodos adicionales como logout, getUserInfo, etc.
+  public updateUserProfile(
+    id_usuario: number,
+    data: Partial<IUser>
+  ): Observable<{ msg: string }> {
+    return this._http.put<{ msg: string }>(
+      `${this._apiUrl}/${id_usuario}`,
+      data
+    );
+  }
 }

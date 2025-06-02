@@ -1,1 +1,46 @@
-<p>cuenta works!</p>
+<mat-card class="perfil-card" *ngIf="perfilForm">
+  <h2>Editar Perfil</h2>
+
+  <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Primer Apellido</mat-label>
+      <input matInput formControlName="primer_apellido" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Segundo Apellido</mat-label>
+      <input matInput formControlName="segundo_apellido" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nueva Contraseña</mat-label>
+      <input matInput formControlName="nueva_contraseña" type="password" />
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Confirmar Contraseña</mat-label>
+      <input matInput formControlName="confirmar_contraseña" type="password" />
+    </mat-form-field>
+
+    <button
+      class="btn"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="perfilForm.invalid"
+    >
+      <mat-icon>save</mat-icon>
+      Guardar cambios
+    </button>
+  </form>
+</mat-card>

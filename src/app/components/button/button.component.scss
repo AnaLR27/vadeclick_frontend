@@ -1,0 +1,8 @@
+@use "variables" as *;
+
+.btn {
+  &:enabled {
+    border: 2px solid $title;
+    color: $title;
+  }
+}
