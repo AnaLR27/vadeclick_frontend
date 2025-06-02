@@ -1,0 +1,45 @@
+@use "variables" as *;
+
+.users-card {
+  min-width: 1000px;
+  min-height: 20vh;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: white;
+  border: 2px solid $footer;
+  h2 {
+    color: $title;
+  }
+  button {
+    color: $dark-red;
+    margin-right: 1rem;
+  }
+  a {
+    color: $dark-red;
+    text-decoration: none;
+  }
+
+  .usuario-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .usuario-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ccc;
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .acciones {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+}

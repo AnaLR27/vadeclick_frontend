@@ -65,18 +65,4 @@ export class AuthService {
       payload
     );
   }
-
-  public getUsuarioPorId(id_usuario: number): Observable<IUser> {
-    return this._http.get<IUser>(`${this._apiUrl}/${id_usuario}`);
-  }
-
-  public updateUserProfile(
-    id_usuario: number,
-    data: Partial<IUser>
-  ): Observable<{ msg: string }> {
-    return this._http.put<{ msg: string }>(
-      `${this._apiUrl}/${id_usuario}`,
-      data
-    );
-  }
 }

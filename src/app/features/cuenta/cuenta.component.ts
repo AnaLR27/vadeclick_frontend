@@ -3,6 +3,7 @@ import { IUser } from '../../core/models/user.model';
 import { AuthService } from '../../core/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from '../../core/services/notification.service';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-cuenta',
@@ -16,7 +17,7 @@ export class CuentaComponent {
   public userId!: string;
 
   constructor(
-    private _authService: AuthService,
+    private _userService: UserService,
     private _fb: FormBuilder,
     private _notification: NotificationService
   ) {}
@@ -25,7 +26,7 @@ export class CuentaComponent {
     const storedId = localStorage.getItem('user_id');
     if (storedId) this.userId = storedId;
 
-    this._authService.getUsuarioPorId(Number(this.userId)).subscribe({
+    this._userService.getUsuarioPorId(Number(this.userId)).subscribe({
       next: (user: IUser) => {
         this.perfilForm = this._fb.group(
           {
@@ -64,7 +65,7 @@ export class CuentaComponent {
       datosActualizados.contraseña = nueva_contraseña;
     }
 
-    this._authService
+    this._userService
       .updateUserProfile(Number(this.userId), datosActualizados)
       .subscribe({
         next: () => {
