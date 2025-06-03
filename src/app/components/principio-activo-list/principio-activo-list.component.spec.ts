@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PrincipioActivoListComponent } from './principio-activo-list.component';
 
-import { FarmacosListComponent } from './farmacos-list.component';
 
-describe('FarmacosListComponent', () => {
-  let component: FarmacosListComponent;
-  let fixture: ComponentFixture<FarmacosListComponent>;
+describe('PrincipioActivoListComponent', () => {
+  let component: PrincipioActivoListComponent;
+  let fixture: ComponentFixture<PrincipioActivoListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FarmacosListComponent]
+      declarations: [PrincipioActivoListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FarmacosListComponent);
+    fixture = TestBed.createComponent(PrincipioActivoListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
