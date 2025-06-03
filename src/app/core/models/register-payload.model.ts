@@ -1,3 +1,6 @@
+/**
+ * Interfaz con los datos para el registro
+ */
 export interface RegisterPayload {
   nombre: string;
   primer_apellido: string;

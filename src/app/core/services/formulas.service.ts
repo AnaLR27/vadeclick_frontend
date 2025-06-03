@@ -3,16 +3,25 @@ import { HttpClient } from '@angular/common/http';
 import { IFormulaMagistral } from '../models/formula-magistral.model';
 import { Observable } from 'rxjs';
 
+/**
+ * FormulasService
+ * Servicio para gestionar las fórmulas magistrales del usuario
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class FormulasService {
+  /**
+   * URL base para las peticiones relacionadas con fórmulas
+   */
   private _apiUrl = 'http://localhost:4000/api/formulas';
 
   constructor(private http: HttpClient) {}
 
   /**
-   * Obtener todas las fórmulas de un usuario por su ID
+   * Obtener todas las fórmulas asociadas a un usuario
+   * @param id_usuario ID del usuario
+   * @returns Observable con la lista de fórmulas
    */
   public getFormulasByUserId(
     id_usuario: string
@@ -21,7 +30,9 @@ export class FormulasService {
   }
 
   /**
-   * Añadir una nueva fórmula
+   * Crear una nueva fórmula magistral
+   * @param formula Datos parciales de la fórmula
+   * @returns Observable con mensaje de éxito
    */
   public addFormula(
     formula: Partial<IFormulaMagistral>
@@ -30,13 +41,20 @@ export class FormulasService {
   }
 
   /**
-   * Eliminar una fórmula por su ID
+   * Eliminar una fórmula existente por su ID
+   * @param id_formula ID de la fórmula a eliminar
+   * @returns Observable con mensaje de éxito
    */
   public deleteFormula(id_formula: number): Observable<{ msg: string }> {
     return this.http.delete<{ msg: string }>(`${this._apiUrl}/${id_formula}`);
   }
 
-  // Editar fórmula existente por ID
+  /**
+   * Actualizar una fórmula existente
+   * @param id_formula ID de la fórmula
+   * @param formula Nuevos datos parciales de la fórmula
+   * @returns Observable con la respuesta del servidor
+   */
   public updateFormula(
     id_formula: number,
     formula: Partial<IFormulaMagistral>
