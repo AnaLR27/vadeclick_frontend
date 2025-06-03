@@ -60,7 +60,6 @@ export class FarmacosComponent implements OnInit {
           ...farmaco,
           esFavorito: idsFavoritos.has(farmaco.id_farmaco),
         }));
-        console.log(this.farmacos);
       },
       error: (err) => {
         console.error('Error al cargar fármacos y favoritos:', err);
