@@ -83,9 +83,9 @@
         (clicked)="onSubmit()"
       ></app-button>
     </div>
-    <app-principio-activo-list
-      [resultados]="resultados"
-      (togglePActivo)="togglePActivo($event)"
-    ></app-principio-activo-list>
   </form>
+  <app-principio-activo-list
+    [resultados]="resultados"
+    (togglePActivo)="togglePActivo($event)"
+  ></app-principio-activo-list>
 </mat-card>
