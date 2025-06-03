@@ -10,6 +10,7 @@ import { RegisterComponent } from './register.component';
 import { RouterModule } from '@angular/router';
 import { RegisterRoutingModule } from './register-routing.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ButtonModule } from '../../../components/button/button.module';
 
 @NgModule({
   declarations: [RegisterComponent],
@@ -22,6 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
+    ButtonModule,
     RegisterRoutingModule,
   ],
 })

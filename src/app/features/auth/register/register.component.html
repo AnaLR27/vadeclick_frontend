@@ -32,14 +32,11 @@
         <input matInput type="password" formControlName="contraseña" required />
       </mat-form-field>
 
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
+      <app-button
+        text="Registrarse"
         [disabled]="registerForm.invalid"
-      >
-        Registrarse
-      </button>
+        (clicked)="onSubmit()"
+      ></app-button>
 
       <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
 

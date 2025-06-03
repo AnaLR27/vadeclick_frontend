@@ -13,14 +13,12 @@
         <input matInput formControlName="contraseña" type="password" required />
       </mat-form-field>
 
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
+      <app-button
+        text="Iniciar sesión"
         [disabled]="loginForm.invalid"
-      >
-        Iniciar sesión
-      </button>
+        (clicked)="onSubmit()"
+      ></app-button>
+
       <div class="register-link">
         ¿No tienes cuenta?
         <a routerLink="/register">Regístrate aquí</a>

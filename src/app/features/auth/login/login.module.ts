@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginRoutingModule } from './login-routing.module';
+import { ButtonModule } from '../../../components/button/button.module';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -20,6 +21,7 @@ import { LoginRoutingModule } from './login-routing.module';
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
+    ButtonModule,
     LoginRoutingModule,
   ],
 })
