@@ -6,7 +6,7 @@ import { RegisterPayload } from '../models/register-payload.model';
 import { LoginResponse } from '../models/login-response.model';
 import { Router } from '@angular/router';
 import { ERol } from '../enum/rol.enum';
-import { environment } from '../../../enviroments/environment';
+import { environment } from '../../../environments/environment';
 
 /**
  * AuthService

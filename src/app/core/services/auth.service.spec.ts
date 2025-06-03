@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { LoginPayload } from '../models/login-payload.model';
 import { ERol } from '../enum/rol.enum';
 import { LoginResponse } from '../models/login-response.model';
-import { environment } from '../../../enviroments/environment';
+import { environment } from '../../../environments/environment';
 
 describe('AuthService', () => {
   let service: AuthService;
