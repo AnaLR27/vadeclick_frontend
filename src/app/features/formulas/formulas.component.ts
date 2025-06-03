@@ -11,10 +11,19 @@ import { NotificationService } from '../../core/services/notification.service';
   styleUrls: ['./formulas.component.scss'],
 })
 export class FormulasComponent implements OnInit {
+  /** Lista de fórmulas del usuario */
   public formulas!: IFormulaMagistral[];
+
+  /** ID del usuario autenticado */
   public userId!: string;
+
+  /** Control de visibilidad del modal */
   public mostrarModal: boolean = false;
+
+  /** Modo actual del modal: ver, editar o agregar */
   public modalModo: 'ver' | 'editar' | 'agregar' = 'agregar';
+
+  /** Fórmula seleccionada para ver, editar o eliminar */
   public formulaSeleccionada?: IFormulaMagistral;
 
   constructor(
@@ -23,6 +32,10 @@ export class FormulasComponent implements OnInit {
     private _notification: NotificationService
   ) {}
 
+  /**
+   * Al inicializar el componente, obtiene el ID del usuario
+   * y carga sus fórmulas desde el backend.
+   */
   ngOnInit(): void {
     const storedId = this._authService.getUserId();
     if (storedId) {
@@ -31,6 +44,9 @@ export class FormulasComponent implements OnInit {
     }
   }
 
+  /**
+   * Solicita al servicio las fórmulas asociadas al usuario actual.
+   */
   private _cargarFormulas(): void {
     this._formulasService.getFormulasByUserId(this.userId).subscribe({
       next: (formulas) => {
@@ -42,21 +58,31 @@ export class FormulasComponent implements OnInit {
     });
   }
 
+  /**
+   * Muestra el modal en modo "ver" para la fórmula seleccionada.
+   * @param formula Fórmula a mostrar
+   */
   onVerMas(formula: IFormulaMagistral): void {
     this.formulaSeleccionada = formula;
     this.modalModo = 'ver';
     this.mostrarModal = true;
-    console.log('Ver:', formula);
   }
 
+  /**
+   * Muestra el modal en modo "editar" para la fórmula seleccionada.
+   * @param formula Fórmula a editar
+   */
   public onEditar(formula: IFormulaMagistral): void {
-    console.log('Editar:', formula);
     this.formulaSeleccionada = formula;
     this.modalModo = 'editar';
     this.mostrarModal = true;
-    this._cargarFormulas(); // recarga la lista tras guardar
+    this._cargarFormulas();
   }
 
+  /**
+   * Elimina una fórmula después de confirmación del usuario.
+   * @param formula Fórmula a eliminar
+   */
   public onEliminar(formula: IFormulaMagistral): void {
     if (!confirm(`¿Eliminar fórmula "${formula.nombre_formula}"?`)) return;
 
@@ -73,17 +99,26 @@ export class FormulasComponent implements OnInit {
     });
   }
 
+  /**
+   * Abre el modal para agregar una nueva fórmula.
+   */
   public onNuevaFormula(): void {
-    console.log('Añadir nueva fórmula');
     this.formulaSeleccionada = undefined;
     this.modalModo = 'agregar';
     this.mostrarModal = true;
-    // Lógica futura: abrir formulario o navegación
   }
+
+  /**
+   * Cierra el modal sin guardar cambios.
+   */
   public cerrarModal(): void {
     this.mostrarModal = false;
   }
 
+  /**
+   * Guarda una nueva fórmula o actualiza una existente, según el modo del modal.
+   * @param formula Datos de la fórmula a guardar
+   */
   public guardarFormula(formula: IFormulaMagistral): void {
     if (this.modalModo === 'agregar') {
       const nuevaFormula = { ...formula, id_usuario: this.userId };

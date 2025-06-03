@@ -12,8 +12,19 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrls: ['./farmacos.component.scss'],
 })
 export class FarmacosComponent implements OnInit {
+  /**
+   * Término de búsqueda ingresado por el usuario
+   */
   public searchTerm: string = '';
+
+  /**
+   * Lista de fármacos resultantes de la búsqueda
+   */
   public farmacos!: IFarmaco[];
+
+  /**
+   * ID del usuario autenticado
+   */
   public userId!: string;
 
   constructor(
@@ -21,13 +32,20 @@ export class FarmacosComponent implements OnInit {
     private _farmacosService: FarmacosService,
     private _favoritosService: FavoritosService
   ) {}
-  
+
+  /**
+   * Al inicializar el componente, obtiene el ID del usuario desde el AuthService
+   */
   ngOnInit(): void {
     if (this._authService.getUserId()) {
       this.userId = this._authService.getUserId();
     }
   }
 
+  /**
+   * Ejecuta una búsqueda de fármacos por nombre (comercial o principio activo)
+   * También obtiene los favoritos del usuario para marcarlos visualmente
+   */
   onSearch(): void {
     const term = this.searchTerm.trim();
     if (!term) return;
@@ -50,9 +68,10 @@ export class FarmacosComponent implements OnInit {
     });
   }
 
-  public clearSearch() {
+  /**
+   * Limpia el campo de búsqueda
+   */
+  public clearSearch(): void {
     this.searchTerm = '';
   }
-
-
 }

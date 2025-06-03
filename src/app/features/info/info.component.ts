@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+/**
+ * Información
+ */
 @Component({
   selector: 'app-info',
   standalone: false,

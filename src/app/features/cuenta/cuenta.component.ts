@@ -12,8 +12,19 @@ import { UserService } from '../../core/services/user.service';
   styleUrl: './cuenta.component.scss',
 })
 export class CuentaComponent {
+  /**
+   * Formulario reactivo para editar los datos del perfil
+   */
   public perfilForm!: FormGroup;
+
+  /**
+   * Datos del usuario actual
+   */
   public user!: IUser;
+
+  /**
+   * ID del usuario obtenido del localStorage
+   */
   public userId!: string;
 
   constructor(
@@ -22,6 +33,11 @@ export class CuentaComponent {
     private _notification: NotificationService
   ) {}
 
+  /**
+   * Carga inicial del componente
+   * - Obtiene el ID del usuario desde el localStorage
+   * - Carga los datos del perfil y construye el formulario
+   */
   ngOnInit(): void {
     const storedId = localStorage.getItem('user_id');
     if (storedId) this.userId = storedId;
@@ -48,7 +64,13 @@ export class CuentaComponent {
     });
   }
 
-  onSubmit(): void {
+  /**
+   * Se ejecuta al enviar el formulario
+   * - Verifica la validez del formulario
+   * - Muestra error si las contraseñas no coinciden
+   * - Actualiza los datos del usuario en el servidor
+   */
+  public onSubmit(): void {
     if (this.perfilForm.invalid) {
       if (this.perfilForm.errors?.['passwordsMismatch']) {
         this._notification.show('Las contraseñas no coinciden');
@@ -79,6 +101,11 @@ export class CuentaComponent {
       });
   }
 
+  /**
+   * Validador personalizado para comprobar si las contraseñas coinciden
+   * @param form FormGroup del perfil
+   * @returns null si coinciden, o error `passwordsMismatch`
+   */
   private _passwordsMatchValidator(form: FormGroup) {
     const nueva = form.get('nueva_contraseña')?.value;
     const confirmar = form.get('confirmar_contraseña')?.value;
