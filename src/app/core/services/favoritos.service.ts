@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IFarmaco } from '../models/farmaco.model';
+import { environment } from '../../../enviroments/environment';
 
 /**
  * FavoritosService
@@ -14,7 +15,7 @@ export class FavoritosService {
   /**
    * URL base para las peticiones de favoritos
    */
-  private _apiUrl = 'http://localhost:4000/api/favoritos';
+  private readonly _apiUrl = `${environment.apiUrl}/favoritos`;
 
   constructor(private _http: HttpClient) {}
 

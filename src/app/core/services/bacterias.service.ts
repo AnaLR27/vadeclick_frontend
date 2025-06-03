@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPrincipioActivo } from '../models/principio-activo.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../../enviroments/environment';
 
 /**
  * BacteriasService
@@ -14,8 +15,7 @@ export class BacteriasService {
   /**
    * URL base para las peticiones relacionadas con bacterias
    */
-  private _apiUrl = 'http://localhost:4000/api/bacterias';
-
+  private readonly _apiUrl = `${environment.apiUrl}/bacterias`;
   constructor(private _http: HttpClient) {}
 
   /**

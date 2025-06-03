@@ -6,6 +6,7 @@ import { RegisterPayload } from '../models/register-payload.model';
 import { LoginResponse } from '../models/login-response.model';
 import { Router } from '@angular/router';
 import { ERol } from '../enum/rol.enum';
+import { environment } from '../../../enviroments/environment';
 
 /**
  * AuthService
@@ -18,7 +19,7 @@ export class AuthService {
   /**
    * URL base para las peticiones de autenticación
    */
-  private readonly _apiUrl = 'http://localhost:4000/api/auth';
+  private readonly _apiUrl = `${environment.apiUrl}/auth`;
   /**
    * Estado reactivo: si el usuario está autenticado
    */

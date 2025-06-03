@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IFormulaMagistral } from '../models/formula-magistral.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../../enviroments/environment';
 
 /**
  * FormulasService
@@ -14,7 +15,7 @@ export class FormulasService {
   /**
    * URL base para las peticiones relacionadas con fórmulas
    */
-  private _apiUrl = 'http://localhost:4000/api/formulas';
+  private readonly _apiUrl = `${environment.apiUrl}/formulas`;
 
   constructor(private http: HttpClient) {}
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUser } from '../models/user.model';
+import { environment } from '../../../enviroments/environment';
 
 /**
  * UserService
@@ -14,7 +15,7 @@ export class UserService {
   /**
    * URL base para las peticiones relacionadas con usuarios
    */
-  private readonly _apiUrl = 'http://localhost:4000/api/users';
+  private readonly _apiUrl = `${environment.apiUrl}/users`;
 
   constructor(private _http: HttpClient) {}
 

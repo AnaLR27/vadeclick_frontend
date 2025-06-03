@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { LoginPayload } from '../models/login-payload.model';
 import { ERol } from '../enum/rol.enum';
 import { LoginResponse } from '../models/login-response.model';
+import { environment } from '../../../enviroments/environment';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -56,7 +57,8 @@ describe('AuthService', () => {
       expect(response).toEqual(mockResponse);
     });
 
-    const req = httpMock.expectOne('http://localhost:4000/api/auth/login');
+    const expectedUrl = `${environment.apiUrl}/auth/login`;
+    const req = httpMock.expectOne(expectedUrl);
     expect(req.request.method).toBe('POST');
     req.flush(mockResponse);
 
